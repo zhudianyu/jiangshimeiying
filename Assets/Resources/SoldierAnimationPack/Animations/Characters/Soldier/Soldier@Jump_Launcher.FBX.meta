@@ -1,0 +1,178 @@
+fileFormatVersion: 2
+guid: 1b0765fc5747f0e4cab743ce118b7d42
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: B_Prop1
+    100002: B_R_Foot
+    100004: B_R_Calf
+    100006: B_R_Thigh
+    100008: B_L_Foot
+    100010: B_L_Calf
+    100012: B_L_Thigh
+    100014: B_Head
+    100016: B_R_Finger11
+    100018: B_R_Finger1
+    100020: B_R_Finger01
+    100022: B_R_Finger0
+    100024: B_R_Hand
+    100026: B_R_Forearm
+    100028: B_R_UpperArm
+    100030: B_L_Finger11
+    100032: B_L_Finger1
+    100034: B_L_Finger01
+    100036: B_L_Finger0
+    100038: B_L_Hand
+    100040: B_L_Forearm
+    100042: B_L_UpperArm
+    100044: B_Spine1
+    100046: B_Spine
+    100048: MissileLauncher
+    100050: B_Pelvis
+    100052: PositionLocator
+    100054: Mesh_Soldier_A
+    100056: //RootNode
+    400000: B_Prop1
+    400002: B_R_Foot
+    400004: B_R_Calf
+    400006: B_R_Thigh
+    400008: B_L_Foot
+    400010: B_L_Calf
+    400012: B_L_Thigh
+    400014: B_Head
+    400016: B_R_Finger11
+    400018: B_R_Finger1
+    400020: B_R_Finger01
+    400022: B_R_Finger0
+    400024: B_R_Hand
+    400026: B_R_Forearm
+    400028: B_R_UpperArm
+    400030: B_L_Finger11
+    400032: B_L_Finger1
+    400034: B_L_Finger01
+    400036: B_L_Finger0
+    400038: B_L_Hand
+    400040: B_L_Forearm
+    400042: B_L_UpperArm
+    400044: B_Spine1
+    400046: B_Spine
+    400048: MissileLauncher
+    400050: B_Pelvis
+    400052: PositionLocator
+    400054: Mesh_Soldier_A
+    400056: //RootNode
+    2300000: MissileLauncher
+    3300000: MissileLauncher
+    4300000: Mesh_Soldier_A
+    4300002: MissileLauncher
+    7400000: Take 001
+    7400002: Jump_Launcher
+    7400004: Fall_Launcher
+    11100000: //RootNode
+    13700000: Mesh_Soldier_A
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jump_Launcher
+      takeName: 
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Fall_Launcher
+      takeName: 
+      firstFrame: 30
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 2
+    tangentImportMode: 2
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
