@@ -29,6 +29,11 @@ public class PlayerAnimtionControl : MonoBehaviour {
     public Rigidbody playerRigidBody;
 
     private RaycastHit hitinfo;//用射线检测是否跳起
+
+    private bool isAllowCreateEffect = false;//是否允许创建粒子特效
+
+    public GameObject PistolShootObject;
+    public Transform shootEffectParent;
     public float upSpeeed = 100;
 	void Start ()
     {
@@ -117,6 +122,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.W))
         {
             playerAnimation.CrossFade("Fire_" + weapon.ToString());
+            isAllowCreateEffect = true;
         }
     }
     void playJump()
@@ -149,6 +155,10 @@ public class PlayerAnimtionControl : MonoBehaviour {
         }
        
     }
+    void CreateEffect()
+    {
+        GameObject.Instantiate(PistolShootObject, shootEffectParent.position, Quaternion.identity);
+    }
 	// Update is called once per frame
 	void Update ()
     {
@@ -158,6 +168,9 @@ public class PlayerAnimtionControl : MonoBehaviour {
             PlayerMoveAnimation();
             changeWeapon();
             playJump();
+            //播放完射击动画开始播放粒子
+            isAllowCreateEffect = false;
+            CreateEffect();
         }
         if (!playerAnimation.IsPlaying("Fall_" + weapon.ToString()))
         {
