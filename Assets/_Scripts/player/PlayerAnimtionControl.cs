@@ -28,6 +28,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
 
     public Rigidbody playerRigidBody;
 
+    private RaycastHit hitinfo;//用射线检测是否跳起
     public float upSpeeed = 100;
 	void Start ()
     {
@@ -122,21 +123,27 @@ public class PlayerAnimtionControl : MonoBehaviour {
     {
         //当y轴上的速度大于0.1，认为在播放跳跃动画，反之停止
         //不能用0判断，因为y轴会有一点点速度
-        if(Mathf.Abs(playerRigidBody.velocity.y)>=0.1f)
-        {
-            playerAnimation.CrossFade("Fall_" + weapon.ToString(), 0.2f);
-        }
-        else
-        {
-            playerAnimation.Stop("Fall_" + weapon.ToString());
-        }
+        //if(Mathf.Abs(playerRigidBody.velocity.y)>=0.1f)
+     if(Physics.Raycast(this.gameObject.transform.position,-this.gameObject.transform.up,out hitinfo))
+     {
+         float dis = Vector3.Distance(this.gameObject.transform.position,hitinfo.point);
+         Debug.Log(dis);
+         if(dis>1)
+         {
+             playerAnimation.CrossFade("Fall_" + weapon.ToString(), 0.2f);
+         }
+         else
+         {
+             playerAnimation.Stop("Fall_" + weapon.ToString());
+         }
+     }
+       
         //不能连续起跳
         if (!playerAnimation.IsPlaying("Fall_" + weapon.ToString()))
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerRigidBody.AddRelativeForce(Vector3.up * upSpeeed);
-
 
             }
         }

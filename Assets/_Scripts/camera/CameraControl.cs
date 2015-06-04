@@ -3,7 +3,7 @@ using System.Collections;
 //和脊椎的算法一样
 public class CameraControl : MonoBehaviour {
 
-    public float sensitivyZ = 1f;
+    public float sensitivyZ = 10f;
 
     private float spineRotion = 0f;
     // Use this for initialization
