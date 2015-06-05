@@ -137,7 +137,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
      if(Physics.Raycast(this.gameObject.transform.position,-this.gameObject.transform.up,out hitinfo))
      {
          float dis = Vector3.Distance(this.gameObject.transform.position,hitinfo.point);
-         Debug.Log(dis);
+      //   Debug.Log(dis);
          if(dis>1)
          {
              playerAnimation.CrossFade("Fall_" + weapon.ToString(), 0.2f);
@@ -189,9 +189,6 @@ public class PlayerAnimtionControl : MonoBehaviour {
         {
             playerShoot();
         }
-        
-     
-       
        
 	}
 }

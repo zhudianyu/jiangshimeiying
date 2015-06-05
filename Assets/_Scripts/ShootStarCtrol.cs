@@ -24,8 +24,10 @@ public class ShootStarCtrol : MonoBehaviour {
         //射线 检测到物体就返回true
        if( Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitinfo))
        {
+           print(Camera.main.transform.position);
            if(hitinfo.collider.tag.Equals("Enemy"))
            {
+               Debug.Log(hitinfo);
                this.gameObject.GetComponent<Image>().color = hitedEnemyColor;
            }
            else

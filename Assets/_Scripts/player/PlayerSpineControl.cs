@@ -2,7 +2,7 @@
 using System.Collections;
 //控制人物的抬头低头动作，主要控制脊椎 绕z轴旋转
 public class PlayerSpineControl : MonoBehaviour {
-    public float sensitivyZ = 10f;
+    public float sensitivyZ = 5f;
 
     private float spineRotion = 0f;
 	// Use this for initialization
