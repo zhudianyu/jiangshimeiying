@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 public enum PlayerWeapon
 {
     Pistol,//手枪
@@ -54,6 +55,14 @@ public class PlayerAnimtionControl : MonoBehaviour {
     private float heavySque = 5f;//大炮射击频率
     private float timer = 0f;
     private bool isAllowShooting = false;//是否连续射击
+
+    public Sprite[] spriteArray;
+    
+    private int[] bulletNumArray = {20,40,5,30};
+
+
+    public Image bulletImage;
+    public Text bulletNumText;
 	void Start ()
     {
          
@@ -96,11 +105,47 @@ public class PlayerAnimtionControl : MonoBehaviour {
         //相对于局部坐标系下的移动，不会出现穿越物体的情况
         playerRigidBody.AddRelativeForce((new Vector3(h, 0, v)) * playerSpeed);
     }
+
+    void setBulletImage(int index)
+    {
+        if(index<spriteArray.Length)
+        {
+            bulletImage.sprite = spriteArray[index];
+            int value = (int)bulletNumArray[index];
+            bulletNumText.text = value.ToString() ;
+        }
+       
+    }
+    void setBulletNum(int index)
+    {
+        if (!isHaveBullet(index))
+            return;
+        if (index < spriteArray.Length)
+        {
+            bulletNumArray[index]--;
+            int value = (int)bulletNumArray[index];
+            bulletNumText.text = value.ToString();
+        }
+    }
+    bool isHaveBullet(int index)
+    {
+        if (index < spriteArray.Length)
+        {
+           
+            int value = (int)bulletNumArray[index];
+            if (value > 0)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
     private void changeWeapon()
     {
          if(Input.GetKeyDown(KeyCode.Tab))
         {
             ++weaponIndex;
+        
             if (weaponIndex == 4)
             {
                 weaponIndex = 0;
@@ -108,6 +153,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if (weaponIndex == 0)
             {
                 weapon = PlayerWeapon.Pistol;
+                
             }
             else if (weaponIndex == 1)
             {
@@ -121,6 +167,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             {
                 weapon = PlayerWeapon.Heavy;
             }
+            setBulletImage(weaponIndex);
             for(int i = 0;i<4;i++)
             {
                 if(i == weaponIndex)
@@ -155,10 +202,8 @@ public class PlayerAnimtionControl : MonoBehaviour {
             timer += Time.deltaTime;
             if(weapon == PlayerWeapon.Rifle)
             {
-               Debug.Log(string.Format("time = {0}",timer));
                float fsq = 1 / rifeSque;
              
-               Debug.Log(string.Format("que = {0}", 1/rifeSque));
                if (timer > fsq)
                 {
                     print("allow play isAllowCreateEffect ");
@@ -219,6 +264,10 @@ public class PlayerAnimtionControl : MonoBehaviour {
     {
         if(weapon == PlayerWeapon.Pistol)
         {
+
+            setBulletNum(weaponIndex);
+            if (!isHaveBullet(weaponIndex))
+                return;
             GameObject.Instantiate(pistolShootObject, shootEffectParent.position, Quaternion.identity);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
@@ -228,6 +277,9 @@ public class PlayerAnimtionControl : MonoBehaviour {
         }
         else if(weapon == PlayerWeapon.Launcher)
         {
+            setBulletNum(weaponIndex);
+            if (!isHaveBullet(weaponIndex))
+                return;
             GameObject.Instantiate(launchShootObject, launchShootEffectParent.position, Quaternion.identity);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
@@ -237,6 +289,9 @@ public class PlayerAnimtionControl : MonoBehaviour {
         }
         else if(weapon == PlayerWeapon.Rifle)
         {
+            setBulletNum(weaponIndex);
+            if (!isHaveBullet(weaponIndex))
+                return;
             GameObject.Instantiate(rifeShootObject, rifeShootEffectParent.position, Quaternion.identity);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
@@ -246,6 +301,9 @@ public class PlayerAnimtionControl : MonoBehaviour {
         }
         else if(weapon == PlayerWeapon.Heavy)
         {
+            setBulletNum(weaponIndex);
+            if (!isHaveBullet(weaponIndex))
+                return;
             GameObject.Instantiate(heavyShootObject, heavyShootEffectParent.position, Quaternion.identity);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
@@ -253,6 +311,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
                 Destroy(effObj, 0.5f);
             }
         }
+       
     }
 	// Update is called once per frame
 	void Update ()
