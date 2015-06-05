@@ -32,13 +32,28 @@ public class PlayerAnimtionControl : MonoBehaviour {
 
     private bool isAllowCreateEffect = false;//是否允许创建粒子特效
 
-    public GameObject pistolShootObject;//射击粒子对象
-    public Transform shootEffectParent;//粒子对象父节点
+    public GameObject pistolShootObject;//手枪射击粒子对象
+    public Transform shootEffectParent;//手枪粒子对象父节点
+    public GameObject hitedEffectObject;//手枪射中物体的粒子对象
 
-    public GameObject hitedEffectObject;//射中物体的粒子对象
+    public GameObject launchShootObject;//机关枪射击粒子对象
+    public Transform launchShootEffectParent;//机关枪粒子对象父节点
+    public GameObject launchHitedEffectObject;//机关枪射中物体的粒子对象
+
+    public GameObject rifeShootObject;//步枪射击粒子对象
+    public Transform rifeShootEffectParent;//步枪粒子对象父节点
+    public GameObject rifeHitedEffectObject;//步枪射中物体的粒子对象
+
+    public GameObject heavyShootObject;//步枪射击粒子对象
+    public Transform heavyShootEffectParent;//步枪粒子对象父节点
+    public GameObject heavyHitedEffectObject;//步枪射中物体的粒子对象
 
     private RaycastHit effectHitInfo;//射击粒子特效射线
     public float upSpeeed = 100;
+    private float rifeSque = 5f;//步枪射击频率
+    private float heavySque = 5f;//大炮射击频率
+    private float timer = 0f;
+    private bool isAllowShooting = false;//是否连续射击
 	void Start ()
     {
          
@@ -127,6 +142,47 @@ public class PlayerAnimtionControl : MonoBehaviour {
         {
             playerAnimation.CrossFade("Fire_" + weapon.ToString());
             isAllowCreateEffect = true;
+            isAllowShooting = true;
+        }
+ 
+        else if (Input.GetMouseButtonUp(0))
+        {
+            
+            isAllowShooting = false;
+        }
+        if(isAllowShooting)
+        {
+            timer += Time.deltaTime;
+            if(weapon == PlayerWeapon.Rifle)
+            {
+               Debug.Log(string.Format("time = {0}",timer));
+               float fsq = 1 / rifeSque;
+             
+               Debug.Log(string.Format("que = {0}", 1/rifeSque));
+               if (timer > fsq)
+                {
+                    print("allow play isAllowCreateEffect ");
+                    timer = 0;
+                    isAllowCreateEffect = true;
+               
+                }
+            }
+            else if(weapon == PlayerWeapon.Heavy)
+            {
+                float fsq = 1 / heavySque;
+                if (timer > fsq)
+                {
+                    timer = 0;
+                    isAllowCreateEffect = true;
+                   
+                }
+            }
+           
+        }
+        else
+        {
+            playerAnimation.Stop("Fire_" + weapon.ToString());
+           // isAllowCreateEffect = false;
         }
     }
     void playJump()
@@ -161,11 +217,41 @@ public class PlayerAnimtionControl : MonoBehaviour {
     }
     void CreateEffect()
     {
-        GameObject.Instantiate(pistolShootObject, shootEffectParent.position, Quaternion.identity);
-        if(Physics.Raycast(Camera.main.transform.position,Camera.main.transform.forward,out effectHitInfo))
+        if(weapon == PlayerWeapon.Pistol)
         {
-            GameObject effObj = (GameObject)GameObject.Instantiate(hitedEffectObject, effectHitInfo.point, Quaternion.identity);
-            Destroy(effObj, 0.5f);
+            GameObject.Instantiate(pistolShootObject, shootEffectParent.position, Quaternion.identity);
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
+            {
+                GameObject effObj = (GameObject)GameObject.Instantiate(hitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                Destroy(effObj, 0.5f);
+            }
+        }
+        else if(weapon == PlayerWeapon.Launcher)
+        {
+            GameObject.Instantiate(launchShootObject, launchShootEffectParent.position, Quaternion.identity);
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
+            {
+                GameObject effObj = (GameObject)GameObject.Instantiate(launchHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+               
+            }
+        }
+        else if(weapon == PlayerWeapon.Rifle)
+        {
+            GameObject.Instantiate(rifeShootObject, rifeShootEffectParent.position, Quaternion.identity);
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
+            {
+                GameObject effObj = (GameObject)GameObject.Instantiate(rifeHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                Destroy(effObj, 0.5f);
+            }
+        }
+        else if(weapon == PlayerWeapon.Heavy)
+        {
+            GameObject.Instantiate(heavyShootObject, heavyShootEffectParent.position, Quaternion.identity);
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
+            {
+                GameObject effObj = (GameObject)GameObject.Instantiate(heavyHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                Destroy(effObj, 0.5f);
+            }
         }
     }
 	// Update is called once per frame
@@ -181,10 +267,16 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if(isAllowCreateEffect)
             {
                 isAllowCreateEffect = false;
+                print("play effect");
                 CreateEffect();
             }
           
         }
+     if(isAllowCreateEffect)
+     {
+         isAllowCreateEffect = false;
+         CreateEffect();
+     }
         if (!playerAnimation.IsPlaying("Fall_" + weapon.ToString()))
         {
             playerShoot();

@@ -27,7 +27,7 @@ public class ShootStarCtrol : MonoBehaviour {
            print(Camera.main.transform.position);
            if(hitinfo.collider.tag.Equals("Enemy"))
            {
-               Debug.Log(hitinfo);
+        
                this.gameObject.GetComponent<Image>().color = hitedEnemyColor;
            }
            else

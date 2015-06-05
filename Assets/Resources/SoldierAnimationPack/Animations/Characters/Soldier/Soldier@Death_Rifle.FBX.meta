@@ -62,7 +62,7 @@ ModelImporter:
     2300000: Mesh_Soldier_A
     3300000: Mesh_Soldier_A
     4300000: Mesh_Soldier_A
-    7400000: Take 001
+    7400000: Death_Rifle
     11100000: //RootNode
   materials:
     importMaterials: 0
@@ -79,7 +79,89 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Death_Rifle
+      takeName: Take 001
+      firstFrame: 2
+      lastFrame: 26.6000004
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Mesh_Soldier_A
+        weight: 1
+      - path: PositionLocator
+        weight: 1
+      - path: PositionLocator/B_Pelvis
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_L_Thigh/B_L_Calf/B_L_Foot
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_R_Thigh/B_R_Calf/B_R_Foot
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_Head
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm/B_L_Hand
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger0/B_L_Finger01
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_L_UpperArm/B_L_Forearm/B_L_Hand/B_L_Finger1/B_L_Finger11
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm/B_R_Hand
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger0/B_R_Finger01
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1
+        weight: 1
+      - path: PositionLocator/B_Pelvis/B_Spine/B_Spine1/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger1/B_R_Finger11
+        weight: 1
+      - path: PositionLocator/B_Prop1
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
