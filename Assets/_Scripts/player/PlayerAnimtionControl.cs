@@ -32,8 +32,12 @@ public class PlayerAnimtionControl : MonoBehaviour {
 
     private bool isAllowCreateEffect = false;//是否允许创建粒子特效
 
-    public GameObject PistolShootObject;
-    public Transform shootEffectParent;
+    public GameObject pistolShootObject;//射击粒子对象
+    public Transform shootEffectParent;//粒子对象父节点
+
+    public GameObject hitedEffectObject;//射中物体的粒子对象
+
+    private RaycastHit effectHitInfo;//射击粒子特效射线
     public float upSpeeed = 100;
 	void Start ()
     {
@@ -157,7 +161,12 @@ public class PlayerAnimtionControl : MonoBehaviour {
     }
     void CreateEffect()
     {
-        GameObject.Instantiate(PistolShootObject, shootEffectParent.position, Quaternion.identity);
+        GameObject.Instantiate(pistolShootObject, shootEffectParent.position, Quaternion.identity);
+        if(Physics.Raycast(Camera.main.transform.position,Camera.main.transform.forward,out effectHitInfo))
+        {
+            GameObject effObj = (GameObject)GameObject.Instantiate(hitedEffectObject, effectHitInfo.point, Quaternion.identity);
+            Destroy(effObj, 0.5f);
+        }
     }
 	// Update is called once per frame
 	void Update ()
@@ -169,8 +178,12 @@ public class PlayerAnimtionControl : MonoBehaviour {
             changeWeapon();
             playJump();
             //播放完射击动画开始播放粒子
-            isAllowCreateEffect = false;
-            CreateEffect();
+            if(isAllowCreateEffect)
+            {
+                isAllowCreateEffect = false;
+                CreateEffect();
+            }
+          
         }
         if (!playerAnimation.IsPlaying("Fall_" + weapon.ToString()))
         {
