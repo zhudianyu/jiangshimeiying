@@ -65,9 +65,17 @@ public class PlayerAnimtionControl : MonoBehaviour {
     public Text bulletNumText;
 	void Start ()
     {
-         
+        setBulletImage(weaponIndex);
 	
 	}
+    public void reloadBullet()
+    {
+        bulletNumArray[0] = 20;
+        bulletNumArray[1] = 40;
+        bulletNumArray[2] = 5;
+        bulletNumArray[3] = 30;
+        setBulletNum(weaponIndex);
+    }
 	private void PlayerMoveAnimation()
     {
         h = Input.GetAxis("Horizontal");
