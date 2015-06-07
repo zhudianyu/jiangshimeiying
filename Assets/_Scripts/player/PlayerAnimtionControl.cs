@@ -324,6 +324,8 @@ public class PlayerAnimtionControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (playerAnimation.IsPlaying("Death_" + weapon.ToString()))
+            return;
         //没有播放攻击动画时，可以进行移动和跳跃还有换枪
         if (!(playerAnimation.IsPlaying("Fire_" + weapon.ToString())||Input.GetKeyDown(KeyCode.W)))
         {

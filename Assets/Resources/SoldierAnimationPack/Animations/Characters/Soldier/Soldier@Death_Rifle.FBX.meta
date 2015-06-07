@@ -84,8 +84,8 @@ ModelImporter:
       name: Death_Rifle
       takeName: Take 001
       firstFrame: 2
-      lastFrame: 26.6000004
-      wrapMode: 2
+      lastFrame: 40
+      wrapMode: 8
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
