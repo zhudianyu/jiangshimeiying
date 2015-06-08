@@ -24,6 +24,11 @@ public class PlayerHpCtronl : MonoBehaviour {
         playerAnimation.CrossFade("Death_" + playCtrol.weapon.ToString(),0.2f);
        
     }
+    public void hited(int hurtValue)
+    {
+        hp -= hurtValue;
+        ShakeCamera.shakeCamera();
+    }
     void changeScene()
     {
         Application.LoadLevel("StartScene");

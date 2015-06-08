@@ -9,6 +9,9 @@ public class AttackPlayer : MonoBehaviour {
     private float distance;
     private RaycastHit hitInfo;
     public Animator enemyAnimator;
+    public PlayerHpCtronl hpCtrl;
+    public int hurtValue = 1;
+    private float timer = 0;
 	// Use this for initialization
 	void Start () {
 	   
@@ -20,16 +23,25 @@ public class AttackPlayer : MonoBehaviour {
         if(enemyAnimator.GetCurrentAnimatorStateInfo(0).IsTag(GlobalCtrol.ATTACK))
         {
             dir = rayEnd.position - rayStart.position;
-            distance = Vector3.Distance(rayEnd.position, rayStart.position);
-
+            distance = Vector3.Distance(rayStart.position, rayEnd.position);
+      
             if (Physics.Raycast(rayStart.position, dir, out hitInfo, distance))
             {
                 if(hitInfo.collider.tag.Equals(GlobalCtrol.PLAYER))
                 {
-                    print("hited");
+                    timer += Time.deltaTime;
+                    if(timer>0.2f)
+                    {
+                        hpCtrl.hited(hurtValue);
+                  
+                        timer = 0;
+                    }
+                  
+
 
                 }
             }
+         
         }
      
       }
