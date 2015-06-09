@@ -60,7 +60,8 @@ public class PlayerAnimtionControl : MonoBehaviour {
     
     private int[] bulletNumArray = {20,40,5,30};
 
-
+    public EnemyHpControl enemyCtrl;
+    private int[] weaponHurtArray = { 3, 2, 10, 3 };
     public Image bulletImage;
     public Text bulletNumText;
 	void Start ()
@@ -268,6 +269,12 @@ public class PlayerAnimtionControl : MonoBehaviour {
         }
        
     }
+
+    void setEnemyHp()
+    {
+        int hurtPoint = weaponHurtArray[weaponIndex];
+        enemyCtrl.hited(hurtPoint);
+    }
     void CreateEffect()
     {
         if(weapon == PlayerWeapon.Pistol)
@@ -280,6 +287,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
                 GameObject effObj = (GameObject)GameObject.Instantiate(hitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                setEnemyHp();
                 Destroy(effObj, 0.5f);
             }
         }
@@ -292,6 +300,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
                 GameObject effObj = (GameObject)GameObject.Instantiate(launchHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                setEnemyHp();
                
             }
         }
@@ -304,6 +313,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
                 GameObject effObj = (GameObject)GameObject.Instantiate(rifeHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                setEnemyHp();
                 Destroy(effObj, 0.5f);
             }
         }
@@ -316,6 +326,7 @@ public class PlayerAnimtionControl : MonoBehaviour {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out effectHitInfo))
             {
                 GameObject effObj = (GameObject)GameObject.Instantiate(heavyHitedEffectObject, effectHitInfo.point, Quaternion.identity);
+                setEnemyHp();
                 Destroy(effObj, 0.5f);
             }
         }
