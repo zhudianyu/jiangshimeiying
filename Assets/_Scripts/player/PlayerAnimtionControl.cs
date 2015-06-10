@@ -60,12 +60,16 @@ public class PlayerAnimtionControl : MonoBehaviour {
     
     private int[] bulletNumArray = {20,40,5,30};
 
-    public EnemyHpControl enemyCtrl;
+    private EnemyHpControl enemyHpCtrl;
+    private EnemyCtronl enemyCtrl;
     private int[] weaponHurtArray = { 3, 2, 10, 3 };
     public Image bulletImage;
     public Text bulletNumText;
 	void Start ()
     {
+        enemyHpCtrl = GameObject.FindGameObjectWithTag(GlobalCtrol.ENEMY).GetComponent<EnemyHpControl>();
+        enemyCtrl = GameObject.FindGameObjectWithTag(GlobalCtrol.ENEMY).GetComponent<EnemyCtronl>();
+
         setBulletImage(weaponIndex);
 	
 	}
@@ -273,7 +277,8 @@ public class PlayerAnimtionControl : MonoBehaviour {
     void setEnemyHp()
     {
         int hurtPoint = weaponHurtArray[weaponIndex];
-        enemyCtrl.hited(hurtPoint);
+        enemyHpCtrl.hited(hurtPoint);
+        enemyCtrl.isFindePlayer = true;
     }
     void CreateEffect()
     {

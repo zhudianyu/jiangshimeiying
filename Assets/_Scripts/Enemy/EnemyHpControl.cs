@@ -6,15 +6,21 @@ public class EnemyHpControl : MonoBehaviour {
 
     public float enemyHp = 100;
 	// Use this for initialization
-    public Animator enemyAnimator;
+    private Animator enemyAnimator;
 
-    public GlobalSceneControl gCtrl;
+    private GlobalSceneControl gCtrl;
+
+    private GameObject bloodObj;
 	void Start () {
-	
+        enemyAnimator = gameObject.GetComponent<Animator>();
+        GameObject gObj = GameObject.Find("GlobalSceneControl");
+        gCtrl = gObj.GetComponent<GlobalSceneControl>();
+        bloodObj = (GameObject)Resources.Load("Box/IGSoft_Resources/Projects/[EffectParticle]/Legacy_Ground/ground 14");
 	}
 	public void hited(int hurtPoint)
     {
         enemyHp -= hurtPoint;
+        GameObject.Instantiate(bloodObj, transform.position, Quaternion.identity);
         if(enemyHp<=0)
         {
             enemyAnimator.SetInteger("DeathType", Random.Range(1, 3));

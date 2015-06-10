@@ -7,14 +7,20 @@ public class PlayerHpCtronl : MonoBehaviour {
     public GameObject hpObject;
     private Image hpImage;
     public float hp = 20;
-    public  Animation playerAnimation;
-    public PlayerAnimtionControl playCtrol;
-    public PlayerRotateX playRotateScr;
+    private Animation playerAnimation;
+    private PlayerAnimtionControl playCtrol;
+    private PlayerRotateX playRotateScr;
     public PlayerSpineControl playSpineScr;
     public Image panelImage;
 	// Use this for initialization
 	void Start () {
+        GameObject player = GameObject.FindGameObjectWithTag(GlobalCtrol.PLAYER);
+        playerAnimation = player.GetComponent<Animation>();
+        playCtrol = player.GetComponent<PlayerAnimtionControl>();
+        playRotateScr = player.GetComponent<PlayerRotateX>();
+
         hpImage = hpObject.GetComponent<Image>();
+
 	}
 	void StartGameOver()
     {

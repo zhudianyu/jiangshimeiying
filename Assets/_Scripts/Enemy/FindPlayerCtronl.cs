@@ -3,10 +3,11 @@ using System.Collections;
 //通过球形触发器判断是否追击玩家
 public class FindPlayerCtronl : MonoBehaviour {
 
-  public  EnemyCtronl enemCtrol;
+  private  EnemyCtronl enemCtrol;
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        enemCtrol = this.gameObject.GetComponentInParent<EnemyCtronl>();
 	}
 	void OnTriggerEnter(Collider player)
     {

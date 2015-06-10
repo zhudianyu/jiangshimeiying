@@ -8,13 +8,15 @@ public class AttackPlayer : MonoBehaviour {
     private Vector3 dir;
     private float distance;
     private RaycastHit hitInfo;
-    public Animator enemyAnimator;
-    public PlayerHpCtronl hpCtrl;
+    private Animator enemyAnimator;
+    private PlayerHpCtronl hpCtrl;
     public int hurtValue = 1;
     private float timer = 0;
 	// Use this for initialization
 	void Start () {
-	   
+        enemyAnimator = this.gameObject.GetComponent<Animator>();
+        GameObject player = GameObject.Find("Panel_hp");
+        hpCtrl = player.GetComponent<PlayerHpCtronl>();
 	}
 	
 	// Update is called once per frame

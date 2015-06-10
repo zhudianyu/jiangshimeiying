@@ -3,19 +3,20 @@ using System.Collections;
 
 
 public class EnemyCtronl : MonoBehaviour {
-    public NavMeshAgent meshAgent;
+    private NavMeshAgent meshAgent;
 
     public Transform[] wayArray;
     private int wayPointIndex = 0;
 
     private float timer = 0;
 
-    public Animator enemyAnimator;
+    private Animator enemyAnimator;
     public Transform playerTrans;
     public bool isFindePlayer = false;
 	// Use this for initialization
 	void Start () {
-
+        enemyAnimator = gameObject.GetComponent<Animator>();
+        meshAgent = gameObject.GetComponent<NavMeshAgent>();
         meshAgent.destination = wayArray[wayPointIndex].position;
 	}
 	
